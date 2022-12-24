@@ -1,0 +1,53 @@
+<h1 id="virtualxp">VirtualXP</h1>
+<p>Virtual Machine running in a Web browser.</p>
+<figure>
+<img src="https://raw.githubusercontent.com/lrusso/VirtualXP/master/VirtualXP.png" alt="" /><figcaption>alt screenshot</figcaption>
+</figure>
+<h2 id="web">Web</h2>
+<p>https://lrusso.github.io/VirtualXP/VirtualXP.htm</p>
+<h2 id="editing-the-virtualxp-registry">Editing the VirtualXP Registry</h2>
+<p>Within the <strong>VirtualXP.iso</strong> image file you will find the following files that belongs to the System Registry.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">REGISTRY KEY</th>
+<th style="text-align: left;">FILE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">HKEY_CURRENT_USER</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">HKEY_LOCAL_MACHINE</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<p>Copy those files to your hard drive (your hard drive must have a standard Windows installation) and run from that standard Windows installation the following lines:</p>
+<pre><code>reg load HKCU\OFFLINE C:\DEFAULT
+reg load HKLM\OFFLINE C:\SOFTWARE</code></pre>
+<p>Those lines will mount the VirtualXP Registry in:</p>
+<ul>
+<li>HKEY_CURRENT_USER</li>
+<li>HKEY_LOCAL_MACHINE</li>
+</ul>
+<p>Now open the Registry editor and at the mentioned location you will find all the settings that VirtualXP is using. Modify all the things that you may need in there and after that run the following lines:</p>
+<pre><code>reg unload HKCU\OFFLINE
+reg unload HKLM\OFFLINE</code></pre>
+<p>Those lines will:</p>
+<ul>
+<li>Remove the **HKEY_CURRENT_USER* Registry.</li>
+<li>Remove the **HKEY_LOCAL_MACHINE* Registry.</li>
+<li>Unmount the <strong>DEFAULT</strong> file and save changes in it.</li>
+<li>Unmount the <strong>SOFTWARE</strong> file and save changes in it.</li>
+</ul>
+<p>After this, you must copy the modified <strong>DEFAULT</strong> and <strong>SOFTWARE</strong> files back to the <strong>VirtualXP.iso</strong> image file.</p>
+<h2 id="the-modelram.exe-file">The MODELRAM.EXE file</h2>
+<p>Within the <strong>VirtualXP.iso</strong> image you will find the <strong>.EXE</strong> file that it is self extracting exe file created with the 7-Zip command line that automatically extracts the <strong>Documents and Settings</strong> folder in the RAMDisk when VirtualXP is booting. The command to create this file is the following:</p>
+<pre><code>7z a MODELRAM.EXE -mx9 -sfx &quot;Documents and Settings&quot;</code></pre>
+<h2 id="virtualxp-is-a-modified-version-of-halfix">VirtualXP is a modified version of Halfix</h2>
+<p>https://github.com/nepx/halfix</p>
+<h2 id="disclaimer">Disclaimer</h2>
+<p>The Windows XP minified image is provided for educational purposes ONLY. This demo is not affiliated with or endorsed by their respective copyright holders.</p>
